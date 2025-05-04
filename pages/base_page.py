@@ -1,4 +1,5 @@
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import InvalidSelectorException
 
 class BasePage():
     def __init__(self, browser, url, timeout=2):
@@ -13,5 +14,7 @@ class BasePage():
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
+            return False
+        except InvalidSelectorException:
             return False
         return True
