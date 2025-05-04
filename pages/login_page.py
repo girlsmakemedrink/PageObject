@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
+from .locators import MainPageLocators
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -8,6 +9,11 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
+        login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
+        assert login_link.is_displayed(), 'Login link is not displayed'
+        assert login_link.is_enabled(), 'Login link is not clickable'
+
+        login_link.click()
         assert '/login' in self.browser.current_url, 'No "login" substring in the URL'
 
     def should_be_login_form(self):
