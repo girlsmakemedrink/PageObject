@@ -7,7 +7,7 @@ class LoginPageLocators():
     LOGIN_EMAIL = ("css selector", "#id_login-username")
     LOGIN_PASSWORD = ("css selector", "#id_login-password")
     LOGIN_BUTTON = ("xpath", "//button[@value='Log In']")
-    FORGOTTEN_PASSWORD = ("xpath", "//a[@href='/en-gb/password-reset/']")
+    FORGOTTEN_PASSWORD = ("xpath", "//a[contains(@href, '/password-reset/')]")
 
     REGISTRATION_EMAIL = ("css selector", "#id_registration-email")
     REGISTRATION_PASSWORD = ("css selector", "#id_registration-password1")
