@@ -4,11 +4,11 @@ from .locators import MainPageLocators
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
-        self.should_be_login_url()
+        self.go_to_login_page()
         self.should_be_login_form()
         self.should_be_register_form()
 
-    def should_be_login_url(self):
+    def go_to_login_page(self):
         login_link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         assert login_link.is_displayed(), 'Login link is not displayed'
         assert login_link.is_enabled(), 'Login link is not clickable'
