@@ -1,0 +1,27 @@
+from pages.product_page import ProductPage
+import pytest
+
+# @pytest.mark.parametrize('promo', ["promo=offer0", "promo=offer1", "promo=offer2", "promo=offer3", "promo=offer4", "promo=offer5", "promo=offer6", "promo=offer7", "promo=offer8", "promo=offer9"])
+def test_guest_can_add_product_to_basket(browser):
+    # PRODUCT_PAGE = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?{promo}/"
+    PRODUCT_PAGE = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0/'
+    page = ProductPage(browser, PRODUCT_PAGE)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+
+    page.open()                                # открываем страницу
+    page.add_product_to_basket()               # выполняем метод страницы
+
+
+def test_guest_cant_see_success_message(browser):
+    PRODUCT_PAGE = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1/'
+    page = ProductPage(browser, PRODUCT_PAGE)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    PRODUCT_PAGE = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1/'
+    page = ProductPage(browser, PRODUCT_PAGE)
+
+    page.open()
+    page.message_should_disappear()
