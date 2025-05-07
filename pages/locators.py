@@ -1,6 +1,8 @@
 class BasePageLocators():
     LOGIN_LINK = ("css selector", "#login_link")
     LOGIN_LINK_INVALID = ("css selector", "#login_link_inc")
+    VIEW_BASKET_BUTTON = ("xpath", "(//a[contains(@href, '/basket/')])[1]")
+
 
 class MainPageLocators():
     LOGIN_LINK = ("css selector", "#login_link")
@@ -20,7 +22,6 @@ class LoginPageLocators():
 
 class ProductPageLocators():
     ADD_TO_BASKET_BUTTON = ("xpath", "//button[@class='btn btn-lg btn-primary btn-add-to-basket']")
-    SEE_BASKET_BUTTON = ("xpath", "(//a[contains(@href, '/basket/')])[4]")
     BUY_BUTTON = ("xpath", "(//a[contains(@href, '/checkout/')])[2]")
     CLOSE_BUTTON = ("xpath", "//div/a[contains(@class, 'close')]")
 
@@ -32,11 +33,19 @@ class ProductPageLocators():
 
     PRODUCT_PRICE = ("xpath", "//p[@class ='price_color']")
     PRODUCT_PRICE_IN_MESSAGE = ("xpath", "//div[@class='alertinner ']/p/strong")
-    PRODUCT_PRICE_IN_BASKET = ("xpath", "//p[@class='price_color align-right']")
 
     PRODUCT_NAME = ("xpath", "//h1")
     PRODUCT_NAME_IN_MESSAGE = ("xpath", "(//div[@class='alertinner ']/strong)[1]")
-    PRODUCT_NAME_IN_BASKET = ("xpath", "//div[@class='col-sm-4']/h3/a")
+
+
+
+class BasketLocators():
 
     REMOVE_BUTTON_IN_BASKET = ("xpath", "//a[@data-behaviours='remove']")
+
+    BASKET_ITEMS = ("xpath", "//div[@class='basket-items']")
     PRODUCT_QUANTITY = ("xpath", "//input[@name='form-0-quantity']")
+
+    PRODUCT_NAME_IN_BASKET = ("xpath", "//div[@class='col-sm-4']/h3/a")
+    PRODUCT_PRICE_IN_BASKET = ("xpath", "//p[@class='price_color align-right']")
+    BASKET_IS_EMPTY_MESSAGE = ("xpath", "//div[@id='content_inner']/p")

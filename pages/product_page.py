@@ -1,7 +1,7 @@
 import time
 
 from .base_page import BasePage
-from .locators import ProductPageLocators
+from .locators import ProductPageLocators, BasePageLocators, BasketLocators
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -21,8 +21,8 @@ class ProductPage(BasePage):
        ), 'CLOSE_BUTTON not found'
 
        assert WebDriverWait(self.browser, 10).until(
-           EC.visibility_of_element_located(ProductPageLocators.SEE_BASKET_BUTTON)
-       ), 'SEE_BASKET_BUTTON not found'
+           EC.visibility_of_element_located(BasePageLocators.VIEW_BASKET_BUTTON)
+       ), 'VIEW_BASKET_BUTTON not found'
 
        assert WebDriverWait(self.browser, 10).until(
            EC.visibility_of_element_located(ProductPageLocators.BUY_BUTTON)
@@ -42,22 +42,22 @@ class ProductPage(BasePage):
 
        # time.sleep(555)
 
-       see_basket_button = self.browser.find_element(*ProductPageLocators.SEE_BASKET_BUTTON)
+       see_basket_button = self.browser.find_element(*BasePageLocators.VIEW_BASKET_BUTTON)
        see_basket_button.click()
 
        assert WebDriverWait(self.browser, 5).until(
-           EC.visibility_of_element_located(ProductPageLocators.PRODUCT_NAME_IN_BASKET)
+           EC.visibility_of_element_located(BasketLocators.PRODUCT_NAME_IN_BASKET)
        ), 'PRODUCT_NAME_IN_BASKET not found'
 
-       product_name_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME_IN_BASKET).text
-       product_price_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_IN_BASKET).text
+       product_name_in_basket = self.browser.find_element(*BasketLocators.PRODUCT_NAME_IN_BASKET).text
+       product_price_in_basket = self.browser.find_element(*BasketLocators.PRODUCT_PRICE_IN_BASKET).text
 
        assert product_name == product_name_in_basket, "Product names does not match"
        assert product_name_in_message == product_name_in_basket, "Product names don't match"
        assert product_price == product_price_in_basket, 'Prices does not match'
 
        expected_value_of_products = '1'
-       actual_value_of_products = self.browser.find_element(*ProductPageLocators.PRODUCT_QUANTITY).get_attribute('value')
+       actual_value_of_products = self.browser.find_element(*BasketLocators.PRODUCT_QUANTITY).get_attribute('value')
 
        assert expected_value_of_products == actual_value_of_products, 'Value of products does not match'
 
